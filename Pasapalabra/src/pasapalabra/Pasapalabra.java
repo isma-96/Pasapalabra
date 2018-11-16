@@ -1,11 +1,11 @@
 
 package pasapalabra;
 
-import Vistas.VistaCarga;
+import Vistas.VistaInicio;
 
 public class Pasapalabra {
 
     public static void main(String[] args) {
-        VistaCarga vistaC=new VistaCarga();
+        VistaInicio vistaC=new VistaInicio();
     }    
 }

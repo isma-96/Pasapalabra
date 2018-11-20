@@ -3,22 +3,29 @@ package Vistas;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 public class VistaRosco1 extends JFrame{        
     private Dimension dim;
     private double x,y;
-    private int cont=65;
-    private ArrayList<Character> letras; 
+    private ArrayList<JLabel> letras;
     private ArrayList<JButton> botones;
+    String letra;
+    ImageIcon img;
+    JLabel label;
     
     public VistaRosco1(){
         letras=new ArrayList();
         botones=new ArrayList();
-        crearVentana();        
-        crearRosco();        
+        crearVentana();
+        crearRosco();                        
         this.setVisible(true);        
     }
     public void crearVentana(){        
@@ -31,35 +38,28 @@ public class VistaRosco1 extends JFrame{
     public void crearRosco(){
         char let;
         JButton boton;
-        double j=0;
-        int posX,r;
+        double j=4.5;
+        int posX,r=300;
         for(int i=0;i<26;i++){            
-            let=(char)(65+i);
-            letras.add(let);
-            //13.84
-            j+=.01;
-            r=600;
-            posX=(dim.width/2)-25;
+            let=(char)(65+i);                        
+            j+=.24;            
+            posX=(dim.width/2)-20;            
             x=posX+Math.cos(j)*r;
-            y=50+Math.sin(j)*r;
-            if(i==0){
-                boton=new JButton();            
-                boton.setBounds(posX, 50, 50, 50); 
-                boton.setText(String.valueOf(let));
-                botones.add(boton);
-                this.add(boton); 
-            }else{
-                boton=new JButton();            
-                boton.setBounds((int)x, (int)y, 50, 50);
-                boton.setText(String.valueOf(let));
-                botones.add(boton);
-                this.add(boton); 
-            }                   
+            y=340+Math.sin(j)*r;
+            letra="../imagenes/letra"+let+"azul.png";
+            URL url=this.getClass().getResource(letra);
+            img=new ImageIcon(url);            
+            boton=new JButton();            
+            boton.setBounds((int)x, (int)y, 60, 60);
+            boton.setIcon(img);            
+            boton.setBorder(null);
+            botones.add(boton);
+            this.add(boton);
         }
     }
     public void paint(Graphics g){                
         g.drawOval(400, 100, 600, 600);        
-    }
+    }    
 }
 /*
     posiX=660;

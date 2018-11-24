@@ -13,6 +13,7 @@ public class VistaCarga extends JDialog{
     private SplashScreen screen;
     private JLabel imgIntro, porcentaje;
     private JProgressBar barraProgreso;
+    private VistaInicio vistaI;
     
     public VistaCarga(){
         iniciarSplash();
@@ -57,7 +58,7 @@ public class VistaCarga extends JDialog{
                     while(progreso<=100){
                         barraProgreso.setValue(progreso);
                         porcentaje.setText("Cargando... "+progreso+"%");
-                        progreso++;
+                        progreso++;                        
                         Thread.sleep(100);//asignamos aqui el tiempo que queremos que tarde en cargar cada %
                     }
                     //aqui terminaria la ejecucion del splash por lo que aqui es donde

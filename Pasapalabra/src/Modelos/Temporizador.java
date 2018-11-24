@@ -1,40 +1,58 @@
 package Modelos;
 
-import Vistas.VistaRosco1;
+import Vistas.VistaRosco;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class Temporizador extends Thread{
-    private boolean adelante,fin=false;
+    private boolean atras,fin=false;
     private int nuMin=0;
     private int nuSeg=0;
-    private VistaRosco1 vistaR1;
+    private VistaRosco vistaR;    
     
-    public Temporizador(int min,int seg,boolean res,VistaRosco1 vis){
+    public Temporizador(int min,int seg,boolean res,VistaRosco vis){
         this.nuMin=min;
         this.nuSeg=seg;
-        this.adelante=res;
-        this.vistaR1=vis;
+        this.atras=res;        
+        this.vistaR=vis;       
     }
     @Override
     public void run(){
         try {//si ocurre un error al dormir el proceso(sleep(999))
-            sleep(1000);
-            while(nuMin>0 || nuSeg>0){//inicio del for infinito          
-              if(nuSeg!=0) {//si no es el ultimo segundo
-                   nuSeg--;  //decremento el numero de segundos 
-                   vistaR1.setContador();
-                }else{                    
-                    if(nuMin!=0){//si no es el ultimo minuto                        
-                        nuSeg=59;//segundos comienzan en 59
-                        nuMin--;//decremento el numero de minutos
-                        vistaR1.setContador();
+            sleep(999);
+            if(atras){                
+                while(nuMin>0 || nuSeg>0){//inicio          
+                    if(nuSeg!=0) {//si no es el ultimo segundo
+                         nuSeg--;  //decremento el numero de segundos 
+                         vistaR.setContador();
+                      }else{                    
+                          if(nuMin!=0){//si no es el ultimo minuto                        
+                              nuSeg=59;//segundos comienzan en 59
+                              nuMin--;//decremento el numero de minutos
+                              vistaR.setContador();
+                          }
+                      }                
+                      sleep(999);//Duermo el hilo durante 999 milisegundos(casi un segundo, quintandole el tiempo de proceso)
+                  }
+                  fin=true;
+            }else{                
+                while(!fin){
+                    if(nuSeg==59){
+                        nuSeg=0;
+                        if(nuMin==59){
+                            fin=true;
+                        }else{
+                            nuMin++;
+                            vistaR.setContador();
+                        }
+                    }else{
+                        nuSeg++;
+                        vistaR.setContador();
                     }
-                }                
-                sleep(999);//Duermo el hilo durante 999 milisegundos(casi un segundo, quintandole el tiempo de proceso)
+                    sleep(999);
+                }
             }
-            fin=true;
         } catch (InterruptedException ex) {
              Logger.getLogger(Temporizador.class.getName()).log(Level.SEVERE, null, ex);      
         }

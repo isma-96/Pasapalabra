@@ -1,7 +1,7 @@
 
 package Vistas;
 
-import Controladores.ControladorRosco1;
+import Controladores.ControladorRosco;
 import Modelos.Imagen;
 import Modelos.Temporizador;
 import java.awt.Dimension;
@@ -11,28 +11,33 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class VistaRosco1 extends JFrame{        
-    private ControladorRosco1 cr1;
+public class VistaRosco extends JFrame{        
+    private ControladorRosco ctrl;
     private Temporizador temp;
     private Dimension dim;
     private double x,y;
-    private final int min=5,seg=0;
+    private boolean rosco1;
+    private int min=0,seg=0;
     private int aciertos,fallos;
     private ArrayList<Character> letras;
     private ArrayList<Imagen> imagenes;
     private JLabel pregunta,lacierto,lfallos,contador;
     private JTextField cuadro;    
     
-    public VistaRosco1(){
-        cr1=new ControladorRosco1(this);
+    public VistaRosco(boolean res){
+        ctrl=new ControladorRosco(this);
         letras=new ArrayList();
         imagenes=new ArrayList();
-        temp=new Temporizador(min,seg,true,this);
+        if(res){
+            min=5;            
+        }
+        temp=new Temporizador(min,seg,res,this);
+        this.rosco1=res;
         crearVentana();
         crearRosco();
         crearTablero();
         this.setVisible(true);
-        this.addKeyListener(cr1);        
+        this.addKeyListener(ctrl);        
         temp.start();        
     }
     
@@ -67,16 +72,18 @@ public class VistaRosco1 extends JFrame{
         this.add(pregunta);
         cuadro=new JTextField();
         cuadro.setBounds(600,400,150,50);
-        cuadro.addKeyListener(cr1);
+        cuadro.addKeyListener(ctrl);
         this.add(cuadro);
-        lacierto=new JLabel("ACIERTOS: "+this.aciertos);
-        lacierto.setBounds(1100,100,200,30);
-        lacierto.setFont(new Font("Serif", Font.BOLD, 28));
-        this.add(lacierto);
-        lfallos=new JLabel("FALLOS: "+this.fallos);
-        lfallos.setBounds(1100,150,200,30);
-        lfallos.setFont(new Font("Serif", Font.BOLD, 28));
-        this.add(lfallos);
+        if(rosco1){
+            lacierto=new JLabel("ACIERTOS: "+this.aciertos);
+            lacierto.setBounds(1100,100,200,30);
+            lacierto.setFont(new Font("Serif", Font.BOLD, 28));
+            this.add(lacierto);
+            lfallos=new JLabel("FALLOS: "+this.fallos);
+            lfallos.setBounds(1100,150,200,30);
+            lfallos.setFont(new Font("Serif", Font.BOLD, 28));
+            this.add(lfallos);
+        }        
         contador=new JLabel(temp.getNuMin()+":"+temp.getNuSeg());
         contador.setBounds(1100,200,100,30);
         contador.setFont(new Font("Serif", Font.BOLD, 28));
@@ -109,6 +116,12 @@ public class VistaRosco1 extends JFrame{
     }
 
     public void setContador() {
-        this.contador.setText(temp.getNuMin()+":"+temp.getNuSeg());
+        if(temp.getNuMin()<10 && temp.getNuSeg()<10){
+            this.contador.setText("0"+temp.getNuMin()+":0"+temp.getNuSeg());
+        }else if(temp.getNuMin()<10){
+            this.contador.setText("0"+temp.getNuMin()+":"+temp.getNuSeg());
+        }else if(temp.getNuSeg()<10){
+            this.contador.setText(temp.getNuMin()+":0"+temp.getNuSeg());
+        }     
     }    
 }

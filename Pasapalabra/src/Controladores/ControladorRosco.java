@@ -1,13 +1,13 @@
 
 package Controladores;
 
-import Vistas.VistaRosco1;
+import Vistas.VistaRosco;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class ControladorRosco1 implements KeyListener{
-    VistaRosco1 vista;
-    public ControladorRosco1(VistaRosco1 vista){
+public class ControladorRosco implements KeyListener{
+    VistaRosco vista;
+    public ControladorRosco(VistaRosco vista){
         this.vista=vista;
     }    
 

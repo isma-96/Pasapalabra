@@ -3,11 +3,11 @@ package pasapalabra;
 
 import Vistas.VistaCarga;
 import Vistas.VistaInicio;
-import Vistas.VistaRosco1;
+import Vistas.VistaRosco;
 
 public class Pasapalabra {
 
     public static void main(String[] args) {
-        VistaCarga vistaC=new VistaCarga();
+        VistaRosco vistaC=new VistaRosco(true);
     }    
 }

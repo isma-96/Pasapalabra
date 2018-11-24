@@ -3,14 +3,12 @@
 package Vistas;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import pasapalabra.MenuPersonalizado;
+import Modelos.MenuPersonalizado;
 
-public class VistaInicio extends JFrame implements ActionListener{
+public class VistaInicio extends JFrame{
     
     private MenuPersonalizado barraM;
     private JPanel contenedor;
@@ -48,10 +46,4 @@ public class VistaInicio extends JFrame implements ActionListener{
         
         this.setVisible(true);
     }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

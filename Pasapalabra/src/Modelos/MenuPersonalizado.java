@@ -1,4 +1,4 @@
-package pasapalabra;
+package Modelos;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;

@@ -10,13 +10,22 @@ public class Temporizador extends Thread{
     private int nuMin=0;
     private int nuSeg=0;
     private VistaRosco vistaR;    
-    
+    /**
+     * Contructor que crea el hilo.
+     * @param min
+     * @param seg
+     * @param res
+     * @param vis 
+     */
     public Temporizador(int min,int seg,boolean res,VistaRosco vis){
         this.nuMin=min;
         this.nuSeg=seg;
         this.atras=res;        
         this.vistaR=vis;       
     }
+    /**
+     * Metodo que empieza el hilo.
+     */
     @Override
     public void run(){
         try {//si ocurre un error al dormir el proceso(sleep(999))

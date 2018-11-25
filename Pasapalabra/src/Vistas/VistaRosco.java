@@ -23,7 +23,10 @@ public class VistaRosco extends JFrame{
     private ArrayList<Imagen> imagenes;
     private JLabel pregunta,lacierto,lfallos,contador;
     private JTextField cuadro;    
-    
+    /**
+     * Contructor de la ventana del rosco
+     * @param res 
+     */
     public VistaRosco(boolean res){
         ctrl=new ControladorRosco(this);
         letras=new ArrayList();
@@ -40,13 +43,18 @@ public class VistaRosco extends JFrame{
         this.addKeyListener(ctrl);        
         temp.start();        
     }
-    
+    /**
+     * Metodo que crea la ventana
+     */
     public void crearVentana(){        
         dim=this.getToolkit().getScreenSize();
         this.setSize(dim);        
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }   
+    }
+    /**
+     * Metodo que crea el rosco.
+     */
     public void crearRosco(){
         char let;        
         double j=4.5;
@@ -65,6 +73,9 @@ public class VistaRosco extends JFrame{
             this.repaint();
         }       
     }
+    /**
+     * Metodo que crea los label y el textField.
+     */
     public void crearTablero(){
         pregunta=new JLabel("Como se llama la madre del Lazarillo?");
         pregunta.setBounds(450,250,480,50);

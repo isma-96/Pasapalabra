@@ -7,14 +7,19 @@ import javax.swing.ImageIcon;
 public class Imagen extends javax.swing.JPanel {
     char letra;
     String color;
-    
+    /**
+     * Constructor de la imagen.
+     * @param let 
+     */
     public Imagen(char let) {
         this.setSize(60,60);
         this.letra=let;
         this.color="azul";
     }
-
-    //Se crea un método cuyo parámetro debe ser un objeto Graphics
+    /**
+     * Metodo para dibujar la imagen.
+     * @param grafico 
+     */    
     public void paint(Graphics grafico) {
         Dimension height = getSize();
 
